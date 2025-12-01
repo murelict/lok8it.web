@@ -518,8 +518,8 @@ document.querySelectorAll('.faq-question').forEach(button => {
             // Check on scroll
             window.addEventListener('scroll', animateOnScroll);
         });
-        // Sign Up modal 
-        function showSignUp() {
+       // Sign Up modal 
+function showSignUp() {
     const modal = document.createElement('div');
     modal.className = 'fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4';
     modal.innerHTML = `
@@ -538,8 +538,7 @@ document.querySelectorAll('.faq-question').forEach(button => {
                 <!-- Title -->
                 <div>
                     <label class="block font-semibold text-black mb-1">Title</label>
-                    <input id="signup-title" class="w-full border rounded-lg p-2"placeholder="Enter Title" >
-        
+                    <input id="signup-title" class="w-full border rounded-lg p-2" placeholder="Enter Title" >
                 </div>
 
                 <!-- Name -->
@@ -578,59 +577,65 @@ document.querySelectorAll('.faq-question').forEach(button => {
     feather.replace();
 }
 
-// ✅ SUBMIT + EMAIL + SUCCESS POPUP
+
+// ✅ SUBMIT — SENDS TO XNEELO VIA sendmail.php
 function submitSignUp(button) {
 
-button.innerText = "Submitting...";
-button.disabled = true;
+    button.innerText = "Submitting...";
+    button.disabled = true;
 
-// Collect values
-const title = document.getElementById('signup-title').value;
-const name = document.getElementById('signup-name').value;
-const surname = document.getElementById('signup-surname').value;
-const phone = document.getElementById('signup-phone').value;
-const email = document.getElementById('signup-email').value;
+    // Collect values
+    const title = document.getElementById('signup-title').value;
+    const name = document.getElementById('signup-name').value;
+    const surname = document.getElementById('signup-surname').value;
+    const phone = document.getElementById('signup-phone').value;
+    const email = document.getElementById('signup-email').value;
 
-// Send email using FormSubmit API
-fetch("https://formsubmit.co/ajax/admin@lok8it.co.za", {
-    method: "POST",
-    headers: { "Content-Type": "application/json", "Accept": "application/json" },
-    body: JSON.stringify({
-        Title: title,
-        Name: name,
-        Surname: surname,
-        Phone: phone,
-        Email: email
+    // Send to Xneelo PHP script
+    fetch("sendmail.php", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: new URLSearchParams({
+            Title: title,
+            Name: name,
+            Surname: surname,
+            Phone: phone,
+            Email: email
+        })
     })
-})
-.then(res => res.json())
-.then(() => {
-    // Close the form modal
-    const modal = button.closest('.fixed');
-    modal.remove();
+    .then(response => response.text())
+    .then(() => {
+        
+        // Close the form modal
+        const modal = button.closest('.fixed');
+        modal.remove();
 
-    // Success popup
-    const success = document.createElement('div');
-    success.className = 'fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 p-4';
-    success.innerHTML = `
-        <div class="bg-white rounded-xl max-w-sm w-full p-6 text-center">
-            <h3 class="text-xl font-bold text-green-600 mb-2">Success!</h3>
-            <p class="text-gray-700">One of our consultants will get in touch shortly.</p>
-        </div>
-    `;
-    document.body.appendChild(success);
+        // Success popup
+        const success = document.createElement('div');
+        success.className = 'fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 p-4';
+        success.innerHTML = `
+            <div class="bg-white rounded-xl max-w-sm w-full p-6 text-center">
+                <h3 class="text-xl font-bold text-green-600 mb-2">Success!</h3>
+                <p class="text-gray-700">One of our consultants will get in touch shortly.</p>
+            </div>
+        `;
+        document.body.appendChild(success);
 
-    setTimeout(() => { success.remove(); }, 3000);
-})
-.catch(err => {
-    alert("Something went wrong. Please try again.");
-    console.error(err);
-});
+        setTimeout(() => { success.remove(); }, 3000);
+    })
+    .catch(err => {
+        alert("Something went wrong. Please try again.");
+        console.error(err);
+    });
 }
+
     </script>   
 </body>
 
 </html>
+
 
 
 
