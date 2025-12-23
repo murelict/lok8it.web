@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOK8it - Proactive Assets & Vehicle Security</title>
+    <script src="https://cdn.tailwindcss.com">
+    </script>
+
+    
+<script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+   body{
+            line-height: 1.6;
+            background-image: linear-gradient(135deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('picture2..jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat; 
+            background-blend-mode: multiply;
+            min-height: 100vh;
+       object-fit: cover;
+            font-family: 'Poppins', sans-serif;
+            color: white;
+        }
+         
+        /* Hero section */
+        .hero-gradient {
+         background-image: linear-gradient(135deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('picture2..jpg');
+          background-size: cover; 
+          background-position: center;
+            object-fit: cover;
+            
+     /* Tablet view */
+@media (max-width: 1024px) {
+  .hero-gradient {
+    background-size: contain; 
+    background-position: center;
+  }
+}
+
+/* Mobile view */
+@media (max-width: 640px) {
+  .hero-gradient {
+       background-image: linear-gradient(135deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('picture2..jpg');
+    background-size: contain; 
+    background-position: center top;
+    background-attachment: scroll;
+       
+  }
+}
+    
+        /* Glass nav */
+        nav.glass-nav {
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    
+        /* Buttons */
+        .btn-primary {
+            background: linear-gradient(90deg, #2563eb, #3b82f6);
+            color: white;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px) scale(1.03);
+            box-shadow: 0 0 15px rgba(37, 99, 235, 0.5);
+        }
+    
+        /* Feature cards */
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 25px -5px rgba(0, 0, 0, 0.4);
+        }
+    
+        footer {
+            background: linear-gradient(to right, #0f172a, #111827);
+        }
+    
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+    
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+      <div class="container mx-auto px-4 md:px-6 py-3">
+        <div class="flex justify-between items-center">
+          
+          <!-- Logo Section -->
+          <div class="flex items-center space-x-3">
+            <img 
+              src="LOK8it transparent.jpeg" 
+              alt="LOK8it Logo" 
+              class="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 object-contain"
+            >
+          <span class="text-[10px] sm:text-xs text-black">  Powered by IoT Secure Track</span>
+
+          </div>
+  
+          <!-- Desktop Navigation -->
+          <div class="hidden md:flex items-center space-x-10">
+            <a href="index.html" class="px-4 py-2 text-gray-800 hover:text-blue-800 font-medium">Home</a>
+            <a href="about.html" class="px-4 py-2 text-gray-800 hover:text-blue-800 font-medium">About</a>
+            <a href="solutions.html" class="px-4 py-2 text-gray-800 hover:text-blue-800 font-medium">Solutions</a>
+            <a href="contact.html" class="px-4 py-2 text-gray-800 hover:text-blue-800 font-medium">Contact</a>
+          </div>
+  
+          <!-- Buttons + Mobile Menu Toggle -->
+          <div class="flex items-center space-x-3">
+
+            <button onclick="showSignUp()" class="hidden md:block px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">Sign up</button>
+  
+            <!-- Mobile Menu Icon -->
+            <button id="menu-btn" class="md:hidden text-gray-700 focus:outline-none">
+              <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Mobile Dropdown Menu -->
+      <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200">
+        <a href="index.html" class="block px-6 py-2 text-gray-800 hover:bg-blue-50">Home</a>
+        <a href="about.html" class="block px-6 py-2 text-gray-800 hover:bg-blue-50">About</a>
+        <a href="solutions.html" class="block px-6 py-2 text-gray-800 hover:bg-blue-50">Solutions</a>
+        <a href="contact.html" class="block px-6 py-2 text-gray-800 hover:bg-blue-50">Contact</a>
+        <button onclick="showSignUp()" class="block w-full text-left px-6 py-2 text-white bg-blue-600 hover:bg-blue-700">Sign up</button> 
+      </div>
+    </nav>
+  
+    <script>
+      // Toggle mobile menu visibility
+      const menuBtn = document.getElementById('menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+  
+      menuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+    </script>
+  </body>
+    <!-- Hero Section -->
+    <section id="home" class="hero-gradient text-white py-32 relative overflow-hidden">
+        <div class="absolute inset-0 z-0"></div>
+        
+        <div class="container mx-auto px-6 relative z-10">
+          <div class="flex flex-col md:flex-row items-center">
+            
+            <div class="md:w-1/2 mb-10 md:mb-0 ">
+              <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-6">
+                Don’t wait to track your car after it’s gone. Stop it before it moves.
+              </h1>
+              <p class="text-xl md:text-1xl mb-8 opacity-90">
+                LOK8IT powered by IoT secure is redefining vehicle and asset security through proactive technology partnerships with malls across South Africa.
+              </p>
+            
+              <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                <button onclick="openBoothLocator()" class="px-8 py-4 bg-white text-blue-600 rounded-lg font-bold hover:bg-gray-100 transition transform hover:scale-105 shadow-lg">
+                  <span class="flex items-center justify-center">
+                    <i data-feather="map-pin" class="w-5 h-5 mr-2"></i> Locate Us
+                  </span>
+                </button>
+              </div>
+            
+              <div class="mt-8 flex items-center space-x-4">
+                <div class="flex -space-x-2">
+                  <img src="http://static.photos/people/200x200/1" class="w-10 h-10 rounded-full border-2 border-white" alt="Customer">
+                  <img src="http://static.photos/people/200x200/2" class="w-10 h-10 rounded-full border-2 border-white" alt="Customer">
+                  <img src="http://static.photos/people/200x200/3" class="w-10 h-10 rounded-full border-2 border-white" alt="Customer">
+                </div>
+                <div>
+                  <p class="text-sm opacity-80">Trusted by 5,000+ customers</p>
+                  <div class="flex items-center">
+                    <i data-feather="star" class="w-4 h-4 text-yellow-400 fill-current mr-1"></i>
+                    <i data-feather="star" class="w-4 h-4 text-yellow-400 fill-current mr-1"></i>
+                    <i data-feather="star" class="w-4 h-4 text-yellow-400 fill-current mr-1"></i>
+                    <i data-feather="star" class="w-4 h-4 text-yellow-400 fill-current mr-1"></i>
+                    <i data-feather="star" class="w-4 h-4 text-yellow-400 fill-current mr-1"></i>
+                    <span class="text-sm ml-1">4.9/5</span>
+                  </div>
+                </div>
+              </div>
+            </div> 
+          </div> 
+        </div> 
+      </section>
+      
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="py-24 bg-gradient-to-b from-gray-50 to-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Simple Setup, Powerful Protection</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">Get protected in just 4 easy steps</p>
+            </div>
+            <div class="relative">
+                <div class="hidden md:block absolute top-1/2 left-0 right-0 h-1 bg-blue-100 transform -translate-y-1/2"></div>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
+                    <div class="text-center bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition-all duration-300">
+                        <div class="w-20 h-20 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-6 text-white font-bold text-2xl relative z-10 shadow-lg">
+                            1
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-gray-900">Find Our Booth</h3>
+                        <p class="text-gray-600">Locate our installation booth at any participating companies</p>
+                    </div>
+                    <div class="text-center bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition-all duration-300">
+                        <div class="w-20 h-20 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-6 text-white font-bold text-2xl relative z-10 shadow-lg">
+                            2
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-gray-900">Select Plan</h3>
+                        <p class="text-gray-600">Choose between subscription or one-time purchase</p>
+                    </div>
+                    <div class="text-center bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition-all duration-300">
+                        <div class="w-20 h-20 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-6 text-white font-bold text-2xl relative z-10 shadow-lg">
+                            3
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-gray-900">Quick Install</h3>
+                        <p class="text-gray-600">Our experts install the device while you shop</p>
+                    </div>
+                    <div class="text-center bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition-all duration-300">
+                        <div class="w-20 h-20 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-6 text-white font-bold text-2xl relative z-10 shadow-lg">
+                            4
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-gray-900">Stay Protected</h3>
+                        <p class="text-gray-600">Monitor your vehicle 24/7 through our mobile app</p>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+    <!-- Why Choose LOK8IT -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12 text-black">Why Choose LOK8IT</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-gray-50 p-6 rounded-lg border border-blue-500">
+                    <div class="text-blue-600 mb-4">
+                        <i data-feather="clock" class="w-10 h-10"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-black">Proactive Approach</h3>
+                    <p class="text-gray-600">Our technology helps prevent theft before it happens.</p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-lg border border-blue-500">
+                    <div class="text-blue-600 mb-4">
+                        <i data-feather="shopping-bag" class="w-10 h-10"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-black">Convenience</h3>
+                    <p class="text-gray-600">Installation available  at your convenience.</p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-lg border border-blue-500">
+                    <div class="text-blue-600 mb-4">
+                        <i data-feather="globe" class="w-10 h-10"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-black">Trusted technology</h3>
+                    <p class="text-gray-600">Powered by IoT Secure Track's proven tracking platform.</p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-lg border border-blue-500">
+                    <div class="text-blue-600 mb-4">
+                        <span class="w-10 h-10 flex items-center justify-center bg-blue-600 text-white rounded-full font-bold text-2xl">
+                            R
+                          </span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-black">Flexible plans </h3>
+                    <p class="text-gray-600">Buy once or subscribe monthly. The choice is yours.</p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-lg border border-blue-500">
+                    <div class="text-blue-600 mb-4">
+                        <i data-feather="headphones" class="w-10 h-10"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-black">Nationwide reach</h3>
+                    <p class="text-gray-600">Rolling out across South African malls in 2025.</p>
+                </div>
+    </section>
+     <!-- Future Vision -->
+     <section id="pricing" class="py-24 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <div class="bg-gray-50 p-6 rounded-lg border border-blue-500">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4"> Future Vision</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">As we continue to grow, LOK8IT aims to expand into residential complexes, dealerships, and commercial fleets, ensuring every valuable asset in South Africa can be located, protected, and recovered with ease.</p>
+                <div class="flex justify-center mt-6">                 
+                </div>
+            </div>
+        </div>
+        <!-- =========================
+     WHATSAPP + PACKAGES ADD-ON
+     ========================= -->
+
+<!-- Floating WhatsApp Button -->
+<a
+href="https://wa.me/27637095453?text=Hi%2C%20I%E2%80%99m%20interested%20in%20LOK8IT%20vehicle%20or%20personal%20security.%20Please%20contact%20me."
+target="_blank"
+class="fixed bottom-6 right-6 z-50 flex items-center gap-3 bg-green-500 hover:bg-green-600 text-white px-5 py-3 rounded-full shadow-xl transition transform hover:scale-105"
+>
+<img
+  src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+  class="w-6 h-6"
+  alt="WhatsApp"
+/>
+<span class="hidden md:inline font-semibold">Chat to us on WhatsApp</span>
+</a>
+
+<!-- Packages Section -->
+<section class="py-24 bg-gray-50">
+<div class="container mx-auto px-6">
+
+  <div class="text-center mb-14">
+    <h2 class="text-4xl font-bold text-black mb-4">Our Security Packages</h2>
+    <p class="text-gray-600 text-lg">
+      No pricing displayed. Speak to our team for a tailored security solution.
+    </p>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+
+    <!-- LOK8Park -->
+    <div class="bg-white border border-blue-500 rounded-xl p-8 shadow-lg">
+      <h3 class="text-2xl font-bold text-blue-600 mb-2">LOK8Park</h3>
+      <p class="font-semibold text-black mb-3">
+        Advanced Vehicle Tracking & Theft Prevention
+      </p>
+      <p class="text-gray-600 mb-4">
+        Ideal for private vehicles, fleets & business vehicles
+      </p>
+
+      <ul class="text-sm text-gray-700 space-y-2 mb-6">
+        <li>✔ Real-time GPS/GSM tracking</li>
+        <li>✔ Trip history & route replay</li>
+        <li>✔ Accident & driver behaviour monitoring</li>
+        <li>✔ Geo-fence, ignition & overspeed alerts</li>
+        <li>✔ Battery & odometer monitoring</li>
+        <li>✔ Web-based fleet & logistics tools</li>
+        <li>✔ Insurance, ICASA & VESA approved</li>
+        <li>✔ Reports, eco-driving & service alerts</li>
+      </ul>
+
+      <p class="text-xs text-gray-500 mb-4">
+        Optional: Start Prevent • Immobilisation<br>
+        Backed by 24/7/365 Emergency Control Room & national recovery network
+      </p>
+
+      <a
+        href="https://wa.me/27637095453?text=I%20want%20to%20check%20if%20my%20vehicle%20qualifies%20for%20LOK8Park."
+        target="_blank"
+        class="block text-center bg-green-500 hover:bg-green-600 text-white font-semibold py-3 rounded-lg"
+      >
+        Check If My Vehicle Qualifies
+      </a>
+    </div>
+
+    <!-- LOK8Sure -->
+    <div class="bg-white border border-blue-500 rounded-xl p-8 shadow-lg">
+      <h3 class="text-2xl font-bold text-blue-600 mb-2">LOK8Sure</h3>
+      <p class="font-semibold text-black mb-3">
+        Secondary Anti-Jamming Insurance Tracking
+      </p>
+      <p class="text-gray-600 mb-4">
+        Ideal for insurance compliance & high-risk vehicles
+      </p>
+
+      <ul class="text-sm text-gray-700 space-y-2 mb-6">
+        <li>✔ Wireless tracking device</li>
+        <li>✔ Advanced anti-jamming technology</li>
+        <li>✔ Insurance-approved secondary unit</li>
+        <li>✔ Anti-tamper alerts</li>
+        <li>✔ 24/7/365 Emergency Control Room</li>
+        <li>✔ National recovery & installation</li>
+      </ul>
+
+      <a
+        href="https://wa.me/27637095453?text=I%20need%20insurance-approved%20tracking%20with%20LOK8Sure."
+        target="_blank"
+        class="block text-center bg-green-500 hover:bg-green-600 text-white font-semibold py-3 rounded-lg"
+      >
+        Get Insurance-Approved Protection
+      </a>
+    </div>
+
+    <!-- LOK8Me -->
+    <div class="bg-white border border-blue-500 rounded-xl p-8 shadow-lg">
+      <h3 class="text-2xl font-bold text-blue-600 mb-2">LOK8Me</h3>
+      <p class="font-semibold text-black mb-3">
+        Personal Safety & Emergency Response
+      </p>
+      <p class="text-gray-600 mb-4">
+        Ideal for individuals, elderly, kids & lone workers
+      </p>
+
+      <ul class="text-sm text-gray-700 space-y-2 mb-6">
+        <li>✔ Portable SOS device with SIM</li>
+        <li>✔ Real-time GPS tracking</li>
+        <li>✔ Two-way voice communication</li>
+        <li>✔ Emergency dispatch via control room</li>
+        <li>✔ Fall detection & reminders</li>
+        <li>✔ Silent & auto-answer modes</li>
+      </ul>
+
+      <a
+        href="https://wa.me/27637095453?text=I%20want%20personal%20safety%20protection%20with%20LOK8Me."
+        target="_blank"
+        class="block text-center bg-green-500 hover:bg-green-600 text-white font-semibold py-3 rounded-lg"
+      >
+        Protect Me or My Loved Ones
+      </a>
+    </div>
+
+  </div>
+
+  <!-- Strong CTA -->
+  <div class="text-center mt-16">
+    <a
+      href="https://wa.me/27637095453?text=I%20would%20like%20a%20free%20security%20assessment."
+      target="_blank"
+      class="inline-block px-10 py-4 bg-green-500 hover:bg-green-600 text-white font-bold rounded-lg shadow-lg transform hover:scale-105"
+    >
+      Get a Free Security Assessment
+    </a>
+  </div>
+
+</div>
+
+    </section>
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <i data-feather="shield" class="w-8 h-8 text-blue-400"></i>
+                        <span class="text-xl font-bold">LOK8IT</span>
+                    </div>
+                    <p class="text-gray-400">Proactive vehicle and asset security powered by IoT Secure Track technology.</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white">Home</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-white">About Us</a></li>
+                        <li><a href="solutions.html" class="text-gray-400 hover:text-white">Solutions</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Legal</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Terms of Service</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Cookie Policy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Connect With Us</h3>
+                    <div class="flex space-x-4 mb-4">
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i data-feather="facebook" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i data-feather="twitter" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i data-feather="instagram" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i data-feather="linkedin" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+                    <p class="text-gray-400">Subscribe to our newsletter</p>
+                    <div class="mt-2 flex">
+                        <input type="email" placeholder="Your email" class="px-4 py-2 bg-gray-700 text-white rounded-l-lg focus:outline-none w-full">
+                        <button class="px-4 py-2 bg-blue-600 rounded-r-lg hover:bg-blue-700">
+                            <i data-feather="send" class="w-5 h-5"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 LOK8IT. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+      
+    <script>
+   // Toggle login modal
+   function toggleLoginModal() {
+            const modal = document.getElementById('loginModal');
+            modal.classList.toggle('hidden');
+        }
+
+// FAQ accordion functionality
+document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const answer = button.nextElementSibling;
+                const icon = button.querySelector('i');
+                
+                // Toggle answer visibility
+                answer.classList.toggle('hidden');
+                
+                // Rotate icon
+                if (answer.classList.contains('hidden')) {
+                    icon.setAttribute('data-feather', 'chevron-down');
+                } else {
+                    icon.setAttribute('data-feather', 'chevron-up');
+                }
+                feather.replace();
+            });
+        });
+
+
+        // Booth locator function
+        function openBoothLocator() {
+            // Get user's location
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        const { latitude, longitude } = position.coords;
+                        // In a real app, you would make an API call to your backend
+                        // For demo, we'll show nearby locations
+                        const modal = document.createElement('div');
+                        modal.className = 'fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4';
+                        modal.innerHTML = `
+                            <div class="bg-white rounded-xl max-w-md w-full p-6">
+                                <div class="flex justify-between items-center mb-4">
+                                    <h3 class="text-xl font-bold text-black">Nearby Booths</h3>
+                                    <button onclick="this.parentElement.parentElement.parentElement.remove()">
+                                        <i data-feather="x" class="w-6 h-6 text-black"></i>
+                                    </button>
+                                </div>
+                                <div class="space-y-4">
+                                    <div class="border border-gray-200 rounded-lg p-4">
+                                        <h4 class="font-bold text-black">Centurion Mall</h4>
+                                        <p class="text-gray-500">Near parking pay station</p>
+                                        <p class="text-sm text-gray-500">0.5km from you</p>
+                                    </div>
+                                    <div class="border border-gray-200 rounded-lg p-4">
+                                        <h4 class="font-bold text-black">Menlyn Park</h4>
+                                        <p class="text-gray-500">Level 3 parking</p>
+                                        <p class="text-sm text-gray-500">2.1km from you</p>
+                                    </div>
+                                    <div class="border border-gray-200 rounded-lg p-4">
+                                        <h4 class="font-bold text-black">Brooklyn Mall</h4>
+                                        <p class="text-gray-500">Main entrance</p>
+                                        <p class="text-sm text-gray-500">3.7km from you</p>
+                                    </div>
+                                </div>
+                                <button onclick="navigateToBooth()" class="w-full mt-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">Get Directions</button>
+                            </div>
+                        `;
+                        document.body.appendChild(modal);
+                        feather.replace();
+                    },
+                    (error) => {
+                        alert('Please enable location services to find nearby booths');
+                    }
+                );
+            } else {
+                alert('Geolocation is not supported by your browser');
+            }
+        }
+
+        // Navigation function
+        function navigateToBooth() {
+            // In a real app, this would open maps with directions
+            window.open('https://maps.google.com?q=Centurion+Mall', '_blank');
+        }
+
+        // Initialize feather icons
+        feather.replace();
+        
+        // Initialize Vanta.js effect
+        VANTA.NET({
+            el: "#vanta-background",
+            color: 0x2563eb,
+            backgroundColor: 0x1e3a8a,
+            points: 14,
+            maxDistance: 18,
+            spacing: 16
+        });
+
+        // Pricing toggle
+        const monthlyBtn = document.getElementById('monthlyBtn');
+        const yearlyBtn = document.getElementById('yearlyBtn');
+        
+        monthlyBtn.addEventListener('click', () => {
+            monthlyBtn.classList.add('bg-blue-600', 'text-white');
+            yearlyBtn.classList.remove('bg-blue-600', 'text-white');
+        });
+        
+        yearlyBtn.addEventListener('click', () => {
+            yearlyBtn.classList.add('bg-blue-600', 'text-white');
+            monthlyBtn.classList.remove('bg-blue-600', 'text-white');
+        });
+
+        // Add animations when scrolling
+        document.addEventListener('DOMContentLoaded', () => {
+            const animateOnScroll = () => {
+                const elements = document.querySelectorAll('.animate-fade-in-up, .animate-fade-in');
+                elements.forEach(el => {
+                    const elementTop = el.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+                    
+                    if (elementTop < windowHeight - 100) {
+                        el.classList.add('opacity-100', 'translate-y-0');
+                    }
+                });
+            };
+
+            // Initial check
+            animateOnScroll();
+            
+            // Check on scroll
+            window.addEventListener('scroll', animateOnScroll);
+        });
+// Sign Up modal 
+function showSignUp() {
+    const modal = document.createElement('div');
+    modal.className = 'fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4';
+modal.innerHTML = `
+    <div class="bg-white rounded-xl max-w-md w-full p-6">
+        
+        <!-- Header -->
+        <div class="flex justify-between items-center mb-6">
+            <h3 class="text-xl font-bold text-black">Complete Your Details</h3>
+            <button onclick="this.closest('.fixed').remove()">
+                <i data-feather="x" class="w-6 h-6 text-black"></i>
+            </button>
+        </div>
+
+        <div class="space-y-4">
+
+            <!-- Title -->
+            <div>
+                <label class="block font-semibold text-black mb-1">Title</label>
+                <input id="signup-title" class="w-full border rounded-lg p-2 text-black" placeholder="Enter Title">
+            </div>
+
+            <!-- Name -->
+            <div>
+                <label class="block font-semibold text-black mb-1">Name</label>
+                <input id="signup-name" type="text" class="w-full border rounded-lg p-2 text-black" placeholder="Enter your name">
+            </div>
+
+            <!-- Surname -->
+            <div>
+                <label class="block font-semibold text-black mb-1">Surname</label>
+                <input id="signup-surname" type="text" class="w-full border rounded-lg p-2 text-black" placeholder="Enter your surname">
+            </div>
+
+            <!-- Phone Number -->
+            <div>
+                <label class="block font-semibold text-black mb-1">Phone Number</label>
+                <input id="signup-phone" type="tel" class="w-full border rounded-lg p-2 text-black" placeholder="Enter your phone number">
+            </div>
+
+            <!-- Email -->
+            <div>
+                <label class="block font-semibold text-black mb-1">Email Address</label>
+                <input id="signup-email" type="email" class="w-full border rounded-lg p-2 text-black" placeholder="Enter your email">
+            </div>
+
+            <!-- Submit -->
+            <button onclick="submitSignUp(this)" class="w-full bg-blue-600 text-white p-3 rounded-lg font-semibold hover:bg-blue-700">
+                Submit
+            </button>
+
+        </div>
+    </div>
+`;
+
+
+    document.body.appendChild(modal);
+    feather.replace();
+}
+
+// ✅ SUBMIT USING XNEELO PHP MAIL
+function submitSignUp(button) {
+
+button.innerText = "Submitting...";
+button.disabled = true;
+
+// Collect values
+const title = document.getElementById('signup-title').value;
+const name = document.getElementById('signup-name').value;
+const surname = document.getElementById('signup-surname').value;
+const phone = document.getElementById('signup-phone').value;
+const email = document.getElementById('signup-email').value;
+
+// Send to Xneelo PHP
+fetch("sendmail.php", {
+    method: "POST",
+    headers: { 
+        "Content-Type": "application/x-www-form-urlencoded" 
+    },
+    body: new URLSearchParams({
+        Title: title,
+        Name: name,
+        Surname: surname,
+        Phone: phone,
+        Email: email
+    })
+})
+.then(res => res.text())
+.then(() => {
+
+    // Remove the form modal immediately
+    const modal = button.closest('.fixed');
+    if (modal) modal.remove();
+
+    // Show success popup
+    showSuccessPopup();
+})
+.catch(err => {
+    console.error("Mail error:", err);
+
+    // Even if sendmail fails, show the popup
+    const modal = button.closest('.fixed');
+    if (modal) modal.remove();
+
+    showSuccessPopup();
+});
+}
+
+
+// ✅ SIMPLE SUCCESS POPUP
+function showSuccessPopup() {
+const popup = document.createElement('div');
+popup.className =
+    'fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 p-4';
+
+popup.innerHTML = `
+    <div class="bg-white rounded-xl max-w-sm w-full p-6 text-center shadow-xl">
+        <h3 class="text-xl font-bold text-green-600 mb-2">Success!</h3>
+        <p class="text-gray-700">One of our consultants will get in touch with you soon.</p>
+    </div>
+`;
+
+document.body.appendChild(popup);
+
+setTimeout(() => popup.remove(), 3000);
+}
+
+
+
+    </script>   
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
